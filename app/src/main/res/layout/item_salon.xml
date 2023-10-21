@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="26dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="170dp"
+                    android:layout_width="170dp"
+                    android:layout_height="180dp"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/rectangle_7"
                     imageUrl="@{salon.image}"/>
@@ -53,7 +53,7 @@
             android:background="@drawable/tv_salon_backgrand"
             android:elevation="7dp"
             android:singleLine="true"
-            android:maxWidth="100dp"
+            android:maxWidth="120dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:fontFamily="@font/iransans"
