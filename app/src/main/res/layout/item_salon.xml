@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:barrierDirection="right"
+    >
 
     <data>
 
@@ -12,63 +14,93 @@
             type="SalonCard" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.card.MaterialCardView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:foregroundGravity="right">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:layout_margin="5dp"
+
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="226dp"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_salon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="30dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
+            app:cardCornerRadius="0dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="1dp">
+            app:strokeWidth="1dp"
+            >
+            <ImageView
+                android:id="@+id/img_salon"
+                android:layout_width="160dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/rectangle_5"
+                imageUrl="@{salon.image}"/>
+                </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="MissingConstraints">
 
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="170dp"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/rectangle_7"
-                    imageUrl="@{salon.image}"/>
-            </LinearLayout>
+<!--                <ImageView-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:src="@drawable/baseline_star_outline_24"-->
 
-        </com.google.android.material.card.MaterialCardView>
+<!--                    />-->
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tv_salon_backgrand"
-            android:elevation="7dp"
-            android:singleLine="true"
-            android:maxWidth="100dp"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:fontFamily="@font/iransans"
-            android:paddingLeft="10dp"
-            android:paddingTop="2dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="2dp"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="@id/card_salon"
-            app:layout_constraintLeft_toLeftOf="@id/card_salon"
-            app:layout_constraintRight_toRightOf="@id/card_salon"
-            app:layout_constraintTop_toBottomOf="@id/card_salon"
-            tools:text="سالن فوتبال"
-            android:text="@{salon.title}"/>
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:maxWidth="100dp"
+                    android:maxLines="1"
+                    android:text="@{salon.title}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="سالن فوتبال" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvDes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxWidth="100dp"
+                tools:text="سالن فوتبال"
+                android:textSize="12sp"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/black"
+                android:text="@{salon.description}"
+                />
+
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </layout>

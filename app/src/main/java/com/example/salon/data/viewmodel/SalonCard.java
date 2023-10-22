@@ -6,12 +6,21 @@ import org.jetbrains.annotations.Nullable;
 
 public class SalonCard {
     int id;
-    String title, image;
+    String title, image,description;
 
     public SalonCard(SalonItem salonItem) {
         id = salonItem.getId();
         title = salonItem.getName();
         image = salonItem.getImages().get(0).getImage();
+        description = salonItem.getDescription();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
