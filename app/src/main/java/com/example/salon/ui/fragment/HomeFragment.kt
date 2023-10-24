@@ -36,12 +36,26 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private fun ChangeViewPager() {
+        Thread(Runnable {
+                while (true) {
+                    Thread.sleep(4000)
+                    if (binding.viewPagerSpecialSalon.currentItem == binding.viewPagerSpecialSalon.childCount) {
+                        binding.viewPagerSpecialSalon.currentItem = 0
+                    }else{
+                        binding.viewPagerSpecialSalon.currentItem = binding.viewPagerSpecialSalon.currentItem + 1
+                    }
+                }
+        }).start()
+    }
+
     private fun getData() {
         var iclient = Client.getClient().create(Iclient::class.java)
         iclient.home().enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 if (response.isSuccessful && response.body() != null) {
                     setData(response.body()!!)
+                    ChangeViewPager()
                 } else {
                     Toast.makeText(context, "خطا", Toast.LENGTH_SHORT).show()
                 }
@@ -60,14 +74,14 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UseRequireInsteadOfGet")
     private fun setRvCategory(categorys: List<CategorysItem>) {
-        Log.e( "setRvCategory: ", categorys.toString())
+        Log.e("setRvCategory: ", categorys.toString())
         if (categorys.isNotEmpty()) {
             var categorylist = ArrayList<ItemCategory>()
             categorys.forEach {
                 categorylist.add(ItemCategory(it))
             }
             binding.rvCategory.layoutManager = LinearLayoutManager(context)
-            binding.rvCategory.adapter = AdapterCategoryHome(context!!,categorylist)
+            binding.rvCategory.adapter = AdapterCategoryHome(context!!, categorylist)
         }
     }
 
