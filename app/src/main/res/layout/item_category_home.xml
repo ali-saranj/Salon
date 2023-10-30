@@ -26,7 +26,7 @@
         android:layout_margin="10dp"
         android:fontFamily="@font/iransans"
         android:text="بیشتر"
-        android:textColor="#BB7D7D7D"
+        android:textColor="#9FE8710B"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

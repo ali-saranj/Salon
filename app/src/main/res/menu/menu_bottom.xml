@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item2"
+        android:id="@id/homeFragment"
         android:icon="@drawable/round_home_24"
         android:title="home" />
     <item
-        android:id="@+id/item3"
+        android:id="@id/searchFragment"
         android:icon="@drawable/round_search_24"
         android:title="search" />
-    <item
-        android:id="@+id/item4"
-        android:icon="@drawable/baseline_person_24"
-        android:title="profile" />
+
 
 </menu>
