@@ -52,18 +52,7 @@ class AdapterCategoryHome( var context: Context,var itemCategorys : ArrayList<It
     }
 
     override fun onBindViewHolder(holder: ViewHolderCategory, position: Int) {
-        binding.tvTitleCategoryHome.text = itemCategorys[position].title
-
-        if (!itemCategorys[position].salonItems.isNullOrEmpty()){
-            var salonCards = ArrayList<SalonCard>()
-            itemCategorys[position].salonItems.forEach {
-                salonCards.add(SalonCard(it))
-            }
-            binding.rvCategorySalon.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-            binding.rvCategorySalon.adapter = AdapterSalonCard(salonCards)
-        }else{
-            Log.e("onBindViewHolder: ","a" )
-        }
+        holder.bind(itemCategorys[position])
     }
 
     companion object {
