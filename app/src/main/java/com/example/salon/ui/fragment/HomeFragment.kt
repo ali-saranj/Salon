@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         getData()
@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
     private fun setRvCategory(categorys: List<CategorysItem>) {
         Log.e("setRvCategory: ", categorys.toString())
         if (categorys.isNotEmpty()) {
-            var categorylist = ArrayList<ItemCategory>()
+            val categorylist = ArrayList<ItemCategory>()
             categorys.forEach {
                 categorylist.add(ItemCategory(it))
             }
