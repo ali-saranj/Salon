@@ -3,11 +3,11 @@ package com.example.salon.ui.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
@@ -21,6 +21,7 @@ import com.example.salon.ui.adapter.AdapterCategoryHome
 import com.example.salon.ui.adapter.AdapterSpecialSalon
 import retrofit2.Call
 import retrofit2.Callback
+
 
 class HomeFragment : Fragment() {
 
@@ -37,16 +38,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun ChangeViewPager() {
-        Thread(Runnable {
-                while (true) {
-                    Thread.sleep(4000)
-                    if (binding.viewPagerSpecialSalon.currentItem == binding.viewPagerSpecialSalon.childCount) {
-                        binding.viewPagerSpecialSalon.currentItem = 0
-                    }else{
-                        binding.viewPagerSpecialSalon.currentItem = binding.viewPagerSpecialSalon.currentItem + 1
-                    }
+        Thread {
+            while (true) {
+                Thread.sleep(4000)
+                if (binding.viewPagerSpecialSalon.currentItem == binding.viewPagerSpecialSalon.childCount) {
+                    binding.viewPagerSpecialSalon.currentItem = 0
+                } else {
+                    binding.viewPagerSpecialSalon.currentItem =
+                        binding.viewPagerSpecialSalon.currentItem + 1
                 }
-        }).start()
+            }
+        }.start()
     }
 
     private fun getData() {
@@ -68,8 +70,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setData(body: Response) {
+        finishLoading()
         setRvSpecialSalon(body.specialOffersSalon)
         setRvCategory(body.categorys)
+    }
+
+    private fun finishLoading() {
+        binding.progressLoading.visibility = View.GONE
+        binding.layoutAllCantent.visibility = View.VISIBLE
     }
 
     @SuppressLint("UseRequireInsteadOfGet")
