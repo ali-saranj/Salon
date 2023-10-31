@@ -1,23 +1,16 @@
 package com.example.salon.ui.adapter
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.salon.R
 import com.example.salon.data.api.Client
 import com.example.salon.data.viewmodel.ItemCategory
 import com.example.salon.data.viewmodel.SalonCard
-import com.example.salon.data.viewmodel.SpecialSalon
 import com.example.salon.databinding.ItemCategoryHomeBinding
-import com.example.salon.databinding.ItemSalonBinding
-import com.example.salon.databinding.ItemSpecialSalonBinding
 import com.squareup.picasso.Picasso
 
 

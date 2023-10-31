@@ -3,11 +3,11 @@
     <item
         android:id="@id/homeFragment"
         android:icon="@drawable/round_home_24"
-        android:title="home" />
+        android:title="صفحه اصلی" />
     <item
         android:id="@id/searchFragment"
         android:icon="@drawable/round_search_24"
-        android:title="search" />
+        android:title="جست وجو" />
 
 
 </menu>
