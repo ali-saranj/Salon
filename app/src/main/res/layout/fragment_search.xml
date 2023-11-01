@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    tools:context=".ui.fragment.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_edt_search"
+        style="?attr/textInputFilledStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="جستجو با نام سالن"
+        app:boxBackgroundColor="#e0e7ed"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintTextColor="@color/black"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@id/btn_search"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransans"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_search"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="4dp"
+        app:backgroundTint="#e8710b"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/round_search_24"
+        app:iconSize="25dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/layout_edt_search"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/layout_edt_search"
+        app:layout_constraintTop_toTopOf="@id/layout_edt_search" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/iransans"
+        android:text="دسته بندی ها"
+        android:textSize="12sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_edt_search" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tv_category"
+        app:reverseLayout="true"
+        tools:listitem="@layout/item_category_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_salon"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/rv_category_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:spanCount="2"
+        app:reverseLayout="false"
+        tools:listitem="@layout/item_salon_griad" />
+</androidx.constraintlayout.widget.ConstraintLayout>
