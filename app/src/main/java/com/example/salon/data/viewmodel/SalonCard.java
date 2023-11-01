@@ -1,6 +1,7 @@
 package com.example.salon.data.viewmodel;
 
 import com.example.salon.data.model.retrofit.home.SalonItem;
+import com.example.salon.data.model.retrofit.search.ResponseItem;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -13,6 +14,13 @@ public class SalonCard {
         title = salonItem.getName();
         image = salonItem.getImages().get(0).getImage();
         description = salonItem.getDescription();
+    }
+
+    public SalonCard(ResponseItem responseItem) {
+        id = responseItem.getId();
+        title = responseItem.getName();
+        image = responseItem.getImages().get(0).getImage();
+        description = responseItem.getDescription();
     }
 
     public String getDescription() {
