@@ -49,30 +49,17 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         getDateCategory();
 
-        binding.edtSearch.addTextChangedListener(searchTextChangedListener());
-
+        binding.btnSearch.setOnClickListener(clickBtnSearch());
         return binding.getRoot();
     }
 
-    private TextWatcher searchTextChangedListener() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                search = s.toString();
-                search(search,String.join(",",categorys));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+    private View.OnClickListener clickBtnSearch() {
+        return v -> {
+            search = binding.edtSearch.getText().toString();
+            search(search,String.join(",", categorys));
         };
     }
+
 
     private void getDateCategory() {
         Iclient iclient = Client.Companion.getClient().create(Iclient.class);
