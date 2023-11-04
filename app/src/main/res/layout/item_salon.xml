@@ -10,6 +10,7 @@
         <variable
             name="salon"
             type="SalonCard" />
+
     </data>
 
 
