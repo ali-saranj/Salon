@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="salon"
+            type="com.example.salon.data.viewmodel.SalonSingel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.SalonFragment"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/backgarand_toolbar"
+            android:elevation="10dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:alpha="0.9"
+                android:padding="4dp"
+                android:src="@drawable/round_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iransans"
+                android:text="بازگشت"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/image_back"
+                app:layout_constraintLeft_toRightOf="@id/image_back"
+                app:layout_constraintTop_toTopOf="@id/image_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/image_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/rectangle_5"/>
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            app:backgroundTint="#e8710b"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/baseline_location_on_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/white"
+            android:tag="@{salon.gps}"
+            app:layout_constraintBottom_toBottomOf="@id/image_title"
+            app:layout_constraintLeft_toLeftOf="@id/image_title"
+            app:layout_constraintTop_toBottomOf="@id/image_title" />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:progressTint="#e8710b"
+            android:rating="@{salon.rant}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_title"
+            tools:rating="5" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/iransans"
+            android:text="@{salon.title}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="@id/rating_bar"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar"
+            tools:text="سالن بانک مرکزی" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/iransanswebfanumbold"
+            android:gravity="left"
+            android:text="@{salon.phone}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_title"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            tools:text="0912323213" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16sp"
+            android:fontFamily="@font/iransans"
+            android:text="@{salon.description}"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="باشگاه بانک مرکزی پاسداران با تمام امکانات بروز دنیا و کلاس های متنوع در رشته های مختلف ورزشی یکی از بهترین باشگاه های پاسداران و شمال تهران است . مجموعه ورزشی تناسب اندام بانک مرکزی دارای مربیان مجرب و به روز و دارای محیطی مناسب می‌باشد.
+
+این مجموعه از مدرن‌ترین دستگاه‌ها و جدیدترین متد‌های آموزشی بهره می‌برد. خدمات باشگاه شامل تی آر ایکس، بدنسازی، ایروبیک، پیلاتس، بادی پامپ، زومبا، فیتنس، اسپینینگ، LPG و  است. از امکانات این مجموعه می‌توان به دوش، بوفه (غذاهای رژیمی)، تهویه و فضای مناسب برای پارک اشاره کرد." />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/iransans"
+            android:gravity="left"
+            android:text="@{salon.address}"
+            android:textColor="#676767"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            tools:text=" پاسداران - بعد از سه راه ضرابخانه - مجموعه باشگاه بانک مرکزی - ضرابخان" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
