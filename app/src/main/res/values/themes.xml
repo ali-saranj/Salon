@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Salon" parent="Base.Theme.Salon" />
+
+
+
+    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressTint"></item> <!-- Filled stars color -->
+    </style>
 </resources>

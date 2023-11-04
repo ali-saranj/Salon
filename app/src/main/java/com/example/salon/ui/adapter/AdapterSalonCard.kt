@@ -4,14 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salon.data.api.Client
 import com.example.salon.data.viewmodel.SalonCard
 import com.example.salon.databinding.ItemSalonBinding
+import com.example.salon.ui.fragment.SalonFragment
 import com.squareup.picasso.Picasso
 
 
-class AdapterSalonCard(var salonCards: ArrayList<SalonCard>) :
+class AdapterSalonCard(var fragmentManager: FragmentManager,var salonCards: ArrayList<SalonCard>) :
     RecyclerView.Adapter<AdapterSalonCard.ViewHolderSalonCard>() {
 
     class ViewHolderSalonCard(private val binding: ItemSalonBinding) :
@@ -33,6 +35,9 @@ class AdapterSalonCard(var salonCards: ArrayList<SalonCard>) :
 
     override fun onBindViewHolder(holder: ViewHolderSalonCard, position: Int) {
         holder.bind(salonCards[position])
+        holder.itemView.setOnClickListener {
+            SalonFragment(salonCards[position].id.toString()).show(fragmentManager,"")
+        }
     }
 
     companion object {

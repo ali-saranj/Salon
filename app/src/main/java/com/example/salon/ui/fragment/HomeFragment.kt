@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
                 categorylist.add(ItemCategory(it))
             }
             binding.rvCategory.layoutManager = LinearLayoutManager(context)
-            binding.rvCategory.adapter = AdapterCategoryHome(context!!, categorylist)
+            binding.rvCategory.adapter = AdapterCategoryHome(parentFragmentManager,context!!, categorylist)
         }
     }
 
@@ -99,10 +99,11 @@ class HomeFragment : Fragment() {
             specialOffersSalon.forEach {
                 specialSalonList.add(SpecialSalon(it))
             }
-            binding.viewPagerSpecialSalon.adapter = AdapterSpecialSalon(specialSalonList)
+            binding.viewPagerSpecialSalon.adapter = AdapterSpecialSalon(parentFragmentManager,specialSalonList)
         } else {
             binding.layoutSpecialSalon.visibility = View.GONE
         }
     }
+
 
 }
