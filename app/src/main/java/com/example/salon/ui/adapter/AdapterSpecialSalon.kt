@@ -1,20 +1,21 @@
 package com.example.salon.ui.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salon.R
 import com.example.salon.data.api.Client
 import com.example.salon.data.viewmodel.SpecialSalon
 import com.example.salon.databinding.ItemSpecialSalonBinding
+import com.example.salon.ui.fragment.SalonFragment
 import com.squareup.picasso.Picasso
 
 
-class AdapterSpecialSalon(var specialSalons: ArrayList<SpecialSalon>) :
+class AdapterSpecialSalon(val fragmentManager: FragmentManager,var specialSalons: ArrayList<SpecialSalon>) :
     RecyclerView.Adapter<AdapterSpecialSalon.ViewHolderSpecialSalon>() {
     private lateinit var binding: ItemSpecialSalonBinding
 
@@ -42,6 +43,10 @@ class AdapterSpecialSalon(var specialSalons: ArrayList<SpecialSalon>) :
 
     override fun onBindViewHolder(holder: ViewHolderSpecialSalon, position: Int) {
         holder.bind(specialSalons[position])
+
+        holder.itemView.setOnClickListener {
+            SalonFragment(specialSalons[position].id.toString()).show(fragmentManager,"")
+        }
     }
 
     companion object {

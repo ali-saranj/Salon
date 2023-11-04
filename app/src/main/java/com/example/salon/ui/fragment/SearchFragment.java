@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment {
                 cardArrayList.add(new SalonCard(responseItem));
             }
             Log.d( "size: ",cardArrayList.size()+"");
-            binding.rvSalon.setAdapter(new AdapterSalonCardGraid(cardArrayList));
+            binding.rvSalon.setAdapter(new AdapterSalonCardGraid(getParentFragmentManager(),cardArrayList));
         }
     }
 

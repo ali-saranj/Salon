@@ -14,4 +14,7 @@ interface Iclient {
 
     @GET("search")
     fun search(@Query("s") s:String,@Query("category") category:String):Call<List<com.example.salon.data.model.retrofit.search.ResponseItem>>
+
+    @GET("getsalon/")
+    fun getSalon(@Query("id") id:String):Call<com.example.salon.data.model.retrofit.getsalon.Response>
 }
