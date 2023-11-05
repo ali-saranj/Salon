@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="login"
+            type="com.example.salon.ui.fragment.login" />
+
+    </data>
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,9 +26,9 @@
             android:id="@+id/animation_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:lottie_rawRes="@raw/login_animation"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
+            app:lottie_rawRes="@raw/login_animation"
             tools:ignore="MissingClass" />
 
     </RelativeLayout>
@@ -26,9 +37,9 @@
         android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
@@ -74,9 +85,8 @@
         </RelativeLayout>
 
 
-
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@drawable/bg_button"
@@ -88,11 +98,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="فراموش کردن رمز عبور"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_15"
-            android:textStyle="bold"
-            android:textColor="#D3FF5722"/>
+            android:text="فراموش کردن رمز عبور"
+            android:textColor="#D3FF5722"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </RelativeLayout>
+
+</layout>
