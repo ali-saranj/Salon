@@ -21,9 +21,9 @@
         <activity
             android:name=".ui.activity.Show_single_Salon"
             android:exported="false" />
-        <activity
-            android:name=".ui.activity.Register"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.activity.L"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">

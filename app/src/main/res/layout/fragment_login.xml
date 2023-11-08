@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
+
     <data>
+
         <variable
             name="login"
-            type="com.example.salon.ui.fragment.login" />
+            type="androidx.fragment.app.Fragment" />
 
     </data>
-
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
