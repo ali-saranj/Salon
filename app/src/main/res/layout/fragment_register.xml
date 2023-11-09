@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout>
-
-    <data>
-
-        <variable
-            name="register"
-            type="com.example.salon.ui.fragment.Register" />
-
-    </data>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout android:background="@android:color/white"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_above="@id/linear"
         android:layout_height="match_parent"
-        android:layout_above="@id/linear">
+        android:layout_width="match_parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_width="match_parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/register_animation"
@@ -35,29 +24,31 @@
 
     <LinearLayout
         android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="@drawable/bg_border"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/bg_border"
+            android:layout_marginTop="14dp"
+            android:layout_width="match_parent"
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="center|left"
+                android:fontFamily="@font/iransans"
+                android:gravity="right"
                 android:hint="نام کاربری"
-                android:inputType="textPassword"
+                android:id="@+id/username"
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />
 
@@ -65,40 +56,42 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="@drawable/bg_border"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/bg_border"
+            android:layout_width="match_parent"
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/name_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="center|left"
+                android:fontFamily="@font/iransans"
+                android:gravity="right"
                 android:hint="نام"
+                android:id="@+id/name_register"
                 android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="@drawable/bg_border"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/bg_border"
+            android:layout_width="match_parent"
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/lastname_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="center|left"
+                android:fontFamily="@font/iransans"
+                android:gravity="right"
                 android:hint="نام خانوادگی"
-                android:inputType="textPassword"
+                android:id="@+id/lastname_register"
+                android:inputType="textPersonName"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:textColor="#09d099"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />
@@ -106,40 +99,42 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="@drawable/bg_border"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/bg_border"
+            android:layout_width="match_parent"
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="center|left"
+                android:fontFamily="@font/iransans"
+                android:gravity="right"
                 android:hint="شماره تماس"
+                android:id="@+id/phone_number"
                 android:inputType="phone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="@drawable/bg_border"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            android:background="@drawable/bg_border"
+            android:layout_width="match_parent"
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="center|left"
+                android:fontFamily="@font/iransans"
+                android:gravity="right"
                 android:hint="رمز عبور"
+                android:id="@+id/password"
                 android:inputType="textPassword"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />
 
@@ -148,16 +143,15 @@
 
 
         <Button
-            android:id="@+id/btn_register"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
             android:background="@drawable/bg_button"
+            android:fontFamily="@font/iransans"
+            android:id="@+id/btn_register"
+            android:layout_height="56dp"
+            android:layout_width="match_parent"
             android:text="ثبت نام"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 </RelativeLayout>
-
-</layout>
