@@ -6,10 +6,10 @@
 
     <fragment
         android:id="@+id/registerFragment2"
-        android:name="com.example.webapp.ui.fragment.RegisterFragment"
+        android:name="com.example.salon.ui.fragment.RegisterFragment"
         android:label="RegisterFragment" />
     <fragment
         android:id="@+id/loginFragment2"
-        android:name="com.example.webapp.ui.fragment.LoginFragment"
+        android:name="com.example.salon.ui.fragment.LoginFragment"
         android:label="LoginFragment" />
 </navigation>

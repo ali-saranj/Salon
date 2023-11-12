@@ -31,6 +31,7 @@ android {
         viewBinding = true
         //noinspection DataBindingWithoutKapt
         dataBinding = true
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -83,6 +84,9 @@ dependencies {
 
     //Animation
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    //fragment
+    implementation ("androidx.fragment:fragment:1.4.0")
 
 }
 kapt {

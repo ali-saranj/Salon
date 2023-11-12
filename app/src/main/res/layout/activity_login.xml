@@ -7,36 +7,32 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/nav_host_fragment_login"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/card_nav"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph_login" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+        <me.ibrahimsn.lib.SmoothBottomBar
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:itemIconSize="20dp"
-            app:itemIconTint="@color/black"
-            app:itemRippleColor="#70FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/login_menu" />
+            android:layout_height="65dp"
+            android:elevation="8dp"
+            android:padding="0dp"
+            app:backgroundColor="#f5f5f5"
+            app:iconTint="#e8710b"
+            app:iconSize="25dp"
+            app:textSize="14dp"
+            app:itemFontFamily="@font/iransans"
+            app:indicatorColor="#e8710b"
+            app:menu="@menu/login_menu"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

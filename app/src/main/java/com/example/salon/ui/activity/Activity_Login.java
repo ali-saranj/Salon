@@ -5,7 +5,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.PopupMenu;
 
 import com.example.salon.R;
 import com.example.salon.databinding.ActivityLoginBinding;
@@ -24,12 +26,8 @@ public class Activity_Login extends AppCompatActivity {
     }
 
     private void setUpNav() {
-        NavHostFragment navHostFragment =
-                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        NavController navController = navHostFragment.getNavController();
-
-        NavigationUI.setupWithNavController(binding.bottomNavigation,
-                navHostFragment.getNavController());
+        PopupMenu popupMenu = new PopupMenu(getApplicationContext(),null);
+        popupMenu.inflate(R.menu.login_menu);
+        binding.bottomBar.setupWithNavController(popupMenu.getMenu(),((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_login)).getNavController());
     }
-
 }

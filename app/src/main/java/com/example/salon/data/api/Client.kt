@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Client {
     companion object{
-//        val BASE_URL = "https://coodplusteam.pythonanywhere.com/"
-        val BASE_URL = "http://192.168.1.105:8080/"
+        val BASE_URL = "https://coodplusteam.pythonanywhere.com/"
+//        val BASE_URL = "http://192.168.1.105:8080/"
 
         private var retrofit: Retrofit? = null;
 
