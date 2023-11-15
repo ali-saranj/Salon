@@ -120,11 +120,12 @@
                 android:textColor="@color/white"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
+                android:text="@{salon.spase}"
                 android:background="@drawable/backgrand_tv_m"
                 android:fontFamily="@font/iransanswebmedium"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:text="1 کیلومتر"/>
+                tools:text="1 کیلومتر"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
