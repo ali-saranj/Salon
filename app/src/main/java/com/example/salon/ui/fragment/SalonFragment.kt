@@ -38,8 +38,15 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         binding = FragmentSalonBinding.inflate(inflater, container, false)
 
         binding.btnGps.setOnClickListener(openGps())
+        binding.btnPhone.setOnClickListener(callToSalon())
 
         return binding.root
+    }
+
+    private fun callToSalon(): View.OnClickListener? {
+        return View.OnClickListener {
+            //TODO amin
+        }
     }
 
     private fun openGps(): View.OnClickListener {
