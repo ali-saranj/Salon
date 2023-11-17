@@ -2,6 +2,8 @@ package com.example.salon.ui.fragment
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -27,7 +29,7 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
 
     lateinit var binding: FragmentSalonBinding
-
+    var salonSingel: SalonSingel? = null;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,22 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
     ): View {
         binding = FragmentSalonBinding.inflate(inflater, container, false)
 
+        binding.btnGps.setOnClickListener(openGps())
+
         return binding.root
+    }
+
+    private fun openGps(): View.OnClickListener {
+        return View.OnClickListener {
+            if (salonSingel != null) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(salonSingel!!.location)
+                    )
+                )
+            }
+        }
     }
 
     private fun getData(id: String) {
@@ -57,9 +74,9 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
     }
 
     private fun setData(body: Response) {
-        val salonSingel = SalonSingel(body)
+        salonSingel = SalonSingel(body)
         binding.salon = salonSingel
-        Picasso.get().load("${Client.BASE_URL}${salonSingel.image}").into(binding.imageTitle)
+        Picasso.get().load("${Client.BASE_URL}${salonSingel!!.image}").into(binding.imageTitle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,12 +85,12 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         getData(id)
 
         binding.imageBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context,android.R.anim.fade_in))
+            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
             dialog!!.dismiss()
         }
 
         binding.tvBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context,android.R.anim.fade_in))
+            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
             dialog!!.dismiss()
         }
 

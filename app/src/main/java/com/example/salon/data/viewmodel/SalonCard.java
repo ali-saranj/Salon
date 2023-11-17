@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 public class SalonCard {
     int id;
     String spase;
-    String title, image,description;
+    String title, image,description,location;
 
     @SuppressLint("DefaultLocale")
     public SalonCard(SalonItem salonItem) {
@@ -20,6 +20,7 @@ public class SalonCard {
         image = salonItem.getImages().get(0).getImage();
         description = salonItem.getDescription();
         spase =String.format("%.2f km",haversine(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
+        location = salonItem.getLocation();
     }
 
     @SuppressLint("DefaultLocale")
@@ -29,6 +30,7 @@ public class SalonCard {
         image = responseItem.getImages().get(0).getImage();
         description = responseItem.getDescription();
         spase =String.format("%.2f km",haversine(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
+        location = responseItem.getLocation();
     }
 
     public String getDescription() {
@@ -81,5 +83,13 @@ public class SalonCard {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return R * c;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
