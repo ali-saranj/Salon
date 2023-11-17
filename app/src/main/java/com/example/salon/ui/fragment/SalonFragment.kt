@@ -2,6 +2,8 @@ package com.example.salon.ui.fragment
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -13,6 +15,7 @@ import android.widget.Toast
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
 import com.example.salon.data.model.retrofit.getsalon.Response
+import com.example.salon.data.viewmodel.SalonCard
 import com.example.salon.data.viewmodel.SalonSingel
 import com.example.salon.databinding.FragmentSalonBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -27,6 +30,7 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
 
     lateinit var binding: FragmentSalonBinding
+    var salonCard: SalonCard? = null
 
 
     override fun onCreateView(
@@ -35,7 +39,17 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
     ): View {
         binding = FragmentSalonBinding.inflate(inflater, container, false)
 
+        binding.btnGps.setOnClickListener(openGps())
+
         return binding.root
+    }
+
+    private fun openGps(): View.OnClickListener {
+        return View.OnClickListener {
+            if (salonCard!=null) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(salonCard!!.location)))
+            }
+        }
     }
 
     private fun getData(id: String) {
