@@ -15,7 +15,6 @@ import android.widget.Toast
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
 import com.example.salon.data.model.retrofit.getsalon.Response
-import com.example.salon.data.viewmodel.SalonCard
 import com.example.salon.data.viewmodel.SalonSingel
 import com.example.salon.databinding.FragmentSalonBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -30,8 +29,7 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
 
     lateinit var binding: FragmentSalonBinding
-    var salonCard: SalonCard? = null
-
+    var salonSingel: SalonSingel? = null;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +44,13 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
     private fun openGps(): View.OnClickListener {
         return View.OnClickListener {
-            if (salonCard!=null) {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(salonCard!!.location)))
+            if (salonSingel != null) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(salonSingel!!.location)
+                    )
+                )
             }
         }
     }
@@ -71,9 +74,9 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
     }
 
     private fun setData(body: Response) {
-        val salonSingel = SalonSingel(body)
+        salonSingel = SalonSingel(body)
         binding.salon = salonSingel
-        Picasso.get().load("${Client.BASE_URL}${salonSingel.image}").into(binding.imageTitle)
+        Picasso.get().load("${Client.BASE_URL}${salonSingel!!.image}").into(binding.imageTitle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,12 +85,12 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         getData(id)
 
         binding.imageBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context,android.R.anim.fade_in))
+            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
             dialog!!.dismiss()
         }
 
         binding.tvBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context,android.R.anim.fade_in))
+            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
             dialog!!.dismiss()
         }
 

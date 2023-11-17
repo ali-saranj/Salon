@@ -5,7 +5,7 @@ import com.example.salon.data.model.retrofit.getsalon.Response;
 import org.jetbrains.annotations.NotNull;
 
 public class SalonSingel {
-    String title, description, address, gps, phone,image;
+    String title, description, address, gps, phone,image, location;
     float rant;
 
     public SalonSingel(@NotNull Response body) {
@@ -16,6 +16,7 @@ public class SalonSingel {
         gps = body.getLocation();
         phone = body.getPhone();
         image = body.getImages().get(0).getImage();
+        location = body.getLocation();
     }
 
     public String getTitle() {
@@ -72,5 +73,13 @@ public class SalonSingel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
