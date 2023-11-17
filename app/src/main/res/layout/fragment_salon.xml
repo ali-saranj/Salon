@@ -74,6 +74,23 @@
             app:layout_constraintLeft_toLeftOf="@id/image_title"
             app:layout_constraintTop_toBottomOf="@id/image_title" />
 
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btn_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            app:backgroundTint="#e8710b"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/baseline_local_phone_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/white"
+            android:tag="@{salon.gps}"
+            app:layout_constraintBottom_toBottomOf="@id/image_title"
+            app:layout_constraintLeft_toRightOf="@id/btn_gps"
+            app:layout_constraintTop_toBottomOf="@id/image_title" />
+
         <RatingBar
             android:id="@+id/rating_bar"
             style="?android:attr/ratingBarStyleSmall"
