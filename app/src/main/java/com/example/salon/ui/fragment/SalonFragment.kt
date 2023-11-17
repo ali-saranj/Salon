@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
 import com.example.salon.data.model.retrofit.getsalon.Response
@@ -28,6 +29,7 @@ import retrofit2.Call
 import retrofit2.Callback
 
 
+@Suppress("DEPRECATION")
 class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
 
@@ -48,11 +50,21 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
     private fun callToSalon(): View.OnClickListener? {
         return View.OnClickListener {
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+            when {
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED -> {
+                    startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
+                }
+
+                ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CALL_PHONE) -> {
+                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
+
+                }
+
+                else -> {
+                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
+                }
             }
-            startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
 
         }
     }
@@ -137,6 +149,23 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         val displayMetrics = DisplayMetrics()
         (context as Activity?)!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.heightPixels
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            // Check if the permission was granted
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, so make the phone call
+            } else {
+                startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
+            }
+        }
     }
 
 }
