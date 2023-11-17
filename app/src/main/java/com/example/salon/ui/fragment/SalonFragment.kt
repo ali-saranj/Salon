@@ -1,8 +1,10 @@
 package com.example.salon.ui.fragment
 
+import android.Manifest
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -12,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
 import com.example.salon.data.model.retrofit.getsalon.Response
@@ -45,7 +48,12 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
     private fun callToSalon(): View.OnClickListener? {
         return View.OnClickListener {
-            //TODO amin
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            }
+            startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
+
         }
     }
 
@@ -53,10 +61,7 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         return View.OnClickListener {
             if (salonSingel != null) {
                 startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(salonSingel!!.location)
-                    )
+                    Intent(Intent.ACTION_VIEW, Uri.parse(salonSingel!!.location))
                 )
             }
         }

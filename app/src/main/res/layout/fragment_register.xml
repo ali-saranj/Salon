@@ -110,7 +110,7 @@
                 android:fontFamily="@font/iransans"
                 android:gravity="right"
                 android:hint="شماره تماس"
-                android:id="@+id/phone_number"
+                android:id="@+id/phoneNumber"
                 android:inputType="phone"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

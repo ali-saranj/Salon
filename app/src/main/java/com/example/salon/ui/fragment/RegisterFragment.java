@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.salon.data.api.Client;
+import com.example.salon.data.api.Iclient;
+import com.example.salon.data.model.retrofit.login.Body;
 import com.example.salon.databinding.FragmentRegisterBinding;
 
 public class RegisterFragment extends Fragment {
