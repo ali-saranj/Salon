@@ -45,7 +45,9 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
     private fun callToSalon(): View.OnClickListener? {
         return View.OnClickListener {
-            //TODO amin
+
+            startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
+
         }
     }
 
