@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 if (response.isSuccessful && response.body() != null) {
                     setData(response.body()!!)
-                    ChangeViewPager()
+//                    ChangeViewPager()
                 } else {
                     Toast.makeText(context, "خطا", Toast.LENGTH_SHORT).show()
                 }
