@@ -88,6 +88,9 @@ dependencies {
     //fragment
     implementation ("androidx.fragment:fragment:1.4.0")
 
+    //Gps
+    implementation ("com.google.android.gms:play-services-location:17.0.0")
+
 }
 kapt {
     correctErrorTypes = true

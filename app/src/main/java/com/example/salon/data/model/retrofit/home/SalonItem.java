@@ -29,6 +29,11 @@ public class SalonItem{
 	@SerializedName("location")
 	private String location;
 
+	@SerializedName("longitude")
+	private String longitude;
+	@SerializedName("latitude")
+	private String latitude;
+
 	@SerializedName("id")
 	private int id;
 
@@ -98,6 +103,30 @@ public class SalonItem{
 
 	public void setId(int id){
 		this.id = id;
+	}
+
+	public boolean isSpecial() {
+		return isSpecial;
+	}
+
+	public void setSpecial(boolean special) {
+		isSpecial = special;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 
 	public int getId(){

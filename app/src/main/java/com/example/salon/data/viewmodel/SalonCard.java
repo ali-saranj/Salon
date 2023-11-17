@@ -1,26 +1,34 @@
 package com.example.salon.data.viewmodel;
 
+import android.annotation.SuppressLint;
+
 import com.example.salon.data.model.retrofit.home.SalonItem;
 import com.example.salon.data.model.retrofit.search.ResponseItem;
+import com.example.salon.ui.activity.MainActivity;
 
 import org.jetbrains.annotations.Nullable;
 
 public class SalonCard {
     int id;
+    String spase;
     String title, image,description;
 
+    @SuppressLint("DefaultLocale")
     public SalonCard(SalonItem salonItem) {
         id = salonItem.getId();
         title = salonItem.getName();
         image = salonItem.getImages().get(0).getImage();
         description = salonItem.getDescription();
+        spase =String.format("%.2f km",haversine(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
     }
 
+    @SuppressLint("DefaultLocale")
     public SalonCard(ResponseItem responseItem) {
         id = responseItem.getId();
         title = responseItem.getName();
         image = responseItem.getImages().get(0).getImage();
         description = responseItem.getDescription();
+        spase =String.format("%.2f km",haversine(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
     }
 
     public String getDescription() {
@@ -53,5 +61,25 @@ public class SalonCard {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSpase() {
+        return spase;
+    }
+
+    public void setSpase(String spase) {
+        this.spase = spase;
+    }
+
+
+    public double haversine(double lat1, double lon1, double lat2, double lon2) {
+        double R = 6371.0; // Earth radius in kilometers
+
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c;
     }
 }
