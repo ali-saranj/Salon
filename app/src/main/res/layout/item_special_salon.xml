@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.example.salon.data.viewmodel.SpecialSalon"/>
+        <import type="com.example.salon.data.model.app.SpecialSalon"/>
         <variable
 
             name="salon"
-            type="com.example.salon.data.viewmodel.SpecialSalon"/>
+            type="com.example.salon.data.model.app.SpecialSalon"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

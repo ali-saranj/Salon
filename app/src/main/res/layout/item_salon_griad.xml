@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.example.salon.data.viewmodel.SalonCard" />
+        <import type="com.example.salon.data.model.app.SalonCard" />
 
         <variable
             name="salon"
-            type="SalonCard" />
+            type="com.example.salon.data.model.app.SalonCard" />
     </data>
 
 

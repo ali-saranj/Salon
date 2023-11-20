@@ -7,7 +7,8 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salon.data.api.Client
-import com.example.salon.data.viewmodel.SalonCard
+import com.example.salon.data.application.SalonApplication
+import com.example.salon.data.model.app.SalonCard
 import com.example.salon.databinding.ItemSalonGriadBinding
 import com.example.salon.ui.fragment.SalonFragment
 import com.squareup.picasso.Picasso

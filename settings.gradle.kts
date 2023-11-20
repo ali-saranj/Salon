@@ -17,4 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Salon"
 include(":app")
- 
+include(":tools")

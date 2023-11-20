@@ -8,39 +8,55 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
 import com.example.salon.data.model.retrofit.home.CategorysItem
 import com.example.salon.data.model.retrofit.home.Response
 import com.example.salon.data.model.retrofit.home.SpecialOffersSalonItem
-import com.example.salon.data.viewmodel.ItemCategory
-import com.example.salon.data.viewmodel.SpecialSalon
+import com.example.salon.data.model.app.ItemCategory
+import com.example.salon.data.model.app.SpecialSalon
+import com.example.salon.data.viewmodel.HomeViewModel
 import com.example.salon.databinding.FragmentHomeBinding
 import com.example.salon.ui.adapter.AdapterCategoryHome
 import com.example.salon.ui.adapter.AdapterSpecialSalon
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Retrofit
+import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    @Inject
+    lateinit var client: Retrofit
     lateinit var binding: FragmentHomeBinding
+
+    private val homeViewModel: HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        getData()
-
+        binding.lifecycleOwner = viewLifecycleOwner
+        setData()
         return binding.root
     }
 
-    private fun ChangeViewPager() {
-        Thread {
+
+
+
+    private fun changeViewPager() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             while (true) {
-                Thread.sleep(4000)
+                delay(5000)
                 if (binding.viewPagerSpecialSalon.currentItem == binding.viewPagerSpecialSalon.childCount) {
                     binding.viewPagerSpecialSalon.currentItem = 0
                 } else {
@@ -48,60 +64,43 @@ class HomeFragment : Fragment() {
                         binding.viewPagerSpecialSalon.currentItem + 1
                 }
             }
-        }.start()
+
+        }
+
     }
 
-    private fun getData() {
-        var iclient = Client.getClient().create(Iclient::class.java)
-        iclient.home().enqueue(object : Callback<Response> {
-            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                if (response.isSuccessful && response.body() != null) {
-                    setData(response.body()!!)
-//                    ChangeViewPager()
-                } else {
-                    Toast.makeText(context, "خطا", Toast.LENGTH_SHORT).show()
-                }
+    private fun setData() {
+        loading()
+        setRvSpecialSalon()
+        setRvCategory()
+        changeViewPager()
+    }
+
+    private fun loading() {
+        homeViewModel.loading.observeForever {
+            if (it){
+                binding.progressLoading.visibility = View.VISIBLE
+                binding.layoutAllCantent.visibility = View.GONE
+            }else{
+                binding.progressLoading.visibility = View.GONE
+                binding.layoutAllCantent.visibility = View.VISIBLE
             }
-
-            override fun onFailure(call: Call<Response>, t: Throwable) {
-                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun setData(body: Response) {
-        finishLoading()
-        setRvSpecialSalon(body.specialOffersSalon)
-        setRvCategory(body.categorys)
-    }
-
-    private fun finishLoading() {
-        binding.progressLoading.visibility = View.GONE
-        binding.layoutAllCantent.visibility = View.VISIBLE
-    }
-
-    @SuppressLint("UseRequireInsteadOfGet")
-    private fun setRvCategory(categorys: List<CategorysItem>) {
-        Log.e("setRvCategory: ", categorys.toString())
-        if (categorys.isNotEmpty()) {
-            val categorylist = ArrayList<ItemCategory>()
-            categorys.forEach {
-                categorylist.add(ItemCategory(it))
-            }
-            binding.rvCategory.layoutManager = LinearLayoutManager(context)
-            binding.rvCategory.adapter = AdapterCategoryHome(parentFragmentManager,context!!, categorylist)
         }
     }
 
-    private fun setRvSpecialSalon(specialOffersSalon: List<SpecialOffersSalonItem>) {
-        if (specialOffersSalon.isNotEmpty()) {
-            var specialSalonList = ArrayList<SpecialSalon>()
-            specialOffersSalon.forEach {
-                specialSalonList.add(SpecialSalon(it))
-            }
-            binding.viewPagerSpecialSalon.adapter = AdapterSpecialSalon(parentFragmentManager,specialSalonList)
-        } else {
-            binding.layoutSpecialSalon.visibility = View.GONE
+
+    @SuppressLint("UseRequireInsteadOfGet")
+    private fun setRvCategory() {
+       homeViewModel.category.observeForever {
+           binding.rvCategory.adapter =
+               AdapterCategoryHome(parentFragmentManager, context!!, it)
+       }
+
+    }
+
+    private fun setRvSpecialSalon() {
+        homeViewModel.specialSalons.observeForever {
+            binding.viewPagerSpecialSalon.adapter = AdapterSpecialSalon(parentFragmentManager, it)
         }
     }
 

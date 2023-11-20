@@ -18,20 +18,28 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.salon.data.api.Client
 import com.example.salon.data.api.Iclient
+import com.example.salon.data.application.SalonApplication
 import com.example.salon.data.model.retrofit.getsalon.Response
-import com.example.salon.data.viewmodel.SalonSingel
+import com.example.salon.data.model.app.SalonSingel
 import com.example.salon.databinding.FragmentSalonBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 @Suppress("DEPRECATION")
 class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
+
+    @Inject
+    lateinit var client: Retrofit
 
     lateinit var binding: FragmentSalonBinding
     var salonSingel: SalonSingel? = null;
@@ -41,46 +49,45 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSalonBinding.inflate(inflater, container, false)
-
-        binding.btnGps.setOnClickListener(openGps())
-        binding.btnPhone.setOnClickListener(callToSalon())
-
+        binding.fragmentsalon = this
         return binding.root
     }
 
-    private fun callToSalon(): View.OnClickListener? {
-        return View.OnClickListener {
+    fun callToSalon(view: View) {
 
-            when {
-                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED -> {
-                    startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
-                }
-
-                ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CALL_PHONE) -> {
-                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
-
-                }
-
-                else -> {
-                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
-                }
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CALL_PHONE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:${salonSingel!!.phone}")))
             }
 
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),
+                Manifest.permission.CALL_PHONE
+            ) -> {
+                requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
+
+            }
+
+            else -> {
+                requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 1)
+            }
         }
+
     }
 
-    private fun openGps(): View.OnClickListener {
-        return View.OnClickListener {
-            if (salonSingel != null) {
-                startActivity(
-                    Intent(Intent.ACTION_VIEW, Uri.parse(salonSingel!!.location))
-                )
-            }
+    fun openGps(view: View) {
+        if (salonSingel != null) {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse(salonSingel!!.location))
+            )
         }
     }
 
     private fun getData(id: String) {
-        val iclient: Iclient = Client.getClient().create(Iclient::class.java)
+        val iclient: Iclient = client.create(Iclient::class.java)
 
         iclient.getSalon(id).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
@@ -108,18 +115,12 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
 
         getData(id)
 
-        binding.imageBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
-            dialog!!.dismiss()
-        }
-
-        binding.tvBack.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
-            dialog!!.dismiss()
-        }
-
     }
 
+    fun back(view: View){
+        view.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
+        dismiss()
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
@@ -147,7 +148,7 @@ class SalonFragment(val id: String) : BottomSheetDialogFragment() {
     private fun getWindowHeight(): Int {
         // Calculate window height for fullscreen use
         val displayMetrics = DisplayMetrics()
-        (context as Activity?)!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.heightPixels
     }
 

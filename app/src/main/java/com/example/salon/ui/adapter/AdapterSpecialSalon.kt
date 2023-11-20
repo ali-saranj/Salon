@@ -9,7 +9,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salon.R
 import com.example.salon.data.api.Client
-import com.example.salon.data.viewmodel.SpecialSalon
+import com.example.salon.data.application.SalonApplication
+import com.example.salon.data.model.app.SpecialSalon
 import com.example.salon.databinding.ItemSpecialSalonBinding
 import com.example.salon.ui.fragment.SalonFragment
 import com.squareup.picasso.Picasso

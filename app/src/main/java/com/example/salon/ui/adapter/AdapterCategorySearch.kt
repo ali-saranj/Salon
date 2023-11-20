@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.salon.data.viewmodel.ItemCategorySearch
+import com.example.salon.data.model.app.ItemCategorySearch
 import com.example.salon.databinding.ItemCategorySearchBinding
 
 

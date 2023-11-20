@@ -1,19 +1,22 @@
-package com.example.salon.data.viewmodel;
+package com.example.salon.data.model.app;
 
 import com.example.salon.data.model.retrofit.home.SpecialOffersSalonItem;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class SpecialSalon {
     private int id;
     private String title, discretion,image;
 
-    public SpecialSalon( SpecialOffersSalonItem specialSalon) {
+    public SpecialSalon(SpecialOffersSalonItem specialSalon) {
         id = specialSalon.getId();
         title = specialSalon.getName();
         discretion = specialSalon.getDescription();
         image = specialSalon.getImages().get(0).getImage();
     }
+
 
     public int getId() {
         return id;
