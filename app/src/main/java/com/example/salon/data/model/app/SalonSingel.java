@@ -1,4 +1,4 @@
-package com.example.salon.data.viewmodel;
+package com.example.salon.data.model.app;
 
 import com.example.salon.data.model.retrofit.getsalon.Response;
 

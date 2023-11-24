@@ -9,8 +9,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salon.data.api.Client
-import com.example.salon.data.viewmodel.ItemCategory
-import com.example.salon.data.viewmodel.SalonCard
+import com.example.salon.data.application.SalonApplication
+import com.example.salon.data.model.app.ItemCategory
+import com.example.salon.data.model.app.SalonCard
 import com.example.salon.databinding.ItemCategoryHomeBinding
 import com.squareup.picasso.Picasso
 

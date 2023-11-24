@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -48,7 +49,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.databinding:databinding-runtime:8.1.2")
+    implementation("androidx.databinding:databinding-runtime:8.1.4")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -86,10 +87,29 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.1.0")
 
     //fragment
-    implementation ("androidx.fragment:fragment:1.4.0")
+    implementation ("androidx.fragment:fragment:1.6.2")
 
     //Gps
-    implementation ("com.google.android.gms:play-services-location:17.0.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation ("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-compiler:2.48.1")
+
+
+    implementation(project(":tools"))
+
+
+    // For instrumentation tests
+    androidTestImplementation  ("com.google.dagger:hilt-android-testing:2.48.1")
+    kaptAndroidTest ("com.google.dagger:hilt-compiler:2.48.1")
+
+    // For local unit tests
+    testImplementation ("com.google.dagger:hilt-android-testing:2.48.1")
+    kaptTest ("com.google.dagger:hilt-compiler:2.48.1")
+
+
 
 }
 kapt {

@@ -7,7 +7,11 @@
 
         <variable
             name="salon"
-            type="com.example.salon.data.viewmodel.SalonSingel" />
+            type="com.example.salon.data.model.app.SalonSingel" />
+
+        <variable
+            name="fragmentsalon"
+            type="com.example.salon.ui.fragment.SalonFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +34,7 @@
                 android:layout_marginLeft="20dp"
                 android:alpha="0.9"
                 android:padding="4dp"
+                android:onClick="@{(view)->fragmentsalon.back(view)}"
                 android:src="@drawable/round_arrow_back_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -43,6 +48,7 @@
                 android:text="بازگشت"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:onClick="@{(view)->fragmentsalon.back(view)}"
                 app:layout_constraintBottom_toBottomOf="@id/image_back"
                 app:layout_constraintLeft_toRightOf="@id/image_back"
                 app:layout_constraintTop_toTopOf="@id/image_back" />
@@ -66,6 +72,7 @@
             android:elevation="4dp"
             app:backgroundTint="#e8710b"
             app:cornerRadius="10dp"
+            android:onClick="@{(view)->fragmentsalon.openGps(view)}"
             app:icon="@drawable/baseline_location_on_24"
             app:iconSize="25dp"
             app:iconTint="@color/white"
@@ -83,6 +90,7 @@
             android:elevation="4dp"
             app:backgroundTint="#e8710b"
             app:cornerRadius="10dp"
+            android:onClick="@{(view)->fragmentsalon.callToSalon(view)}"
             app:icon="@drawable/baseline_local_phone_24"
             app:iconSize="25dp"
             app:iconTint="@color/white"

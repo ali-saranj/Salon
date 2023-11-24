@@ -42,6 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="ltr"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:reverseLayout="true"
+            tools:listitem="@layout/item_salon"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
