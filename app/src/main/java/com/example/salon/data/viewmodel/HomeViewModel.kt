@@ -1,5 +1,6 @@
 package com.example.salon.data.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -47,6 +48,7 @@ class HomeViewModel @Inject constructor(val homeRepasitory: HomeRepository):View
                 }
 
                 override fun failure(t: Throwable) {
+                    Log.e("Error",t.message.toString())
                 }
             })
         }

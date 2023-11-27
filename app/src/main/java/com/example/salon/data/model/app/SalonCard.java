@@ -1,5 +1,7 @@
 package com.example.salon.data.model.app;
 
+import static com.example.tools.ToolsKt.StringSpace;
+
 import android.annotation.SuppressLint;
 
 import com.example.salon.data.model.retrofit.home.SalonItem;
@@ -19,7 +21,8 @@ public class SalonCard {
         title = salonItem.getName();
         image = salonItem.getImages().get(0).getImage();
         description = salonItem.getDescription();
-        spase =String.format("%.2f km",haversine(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
+        spase = "0km";
+//        spase = StringSpace(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude);
         location = salonItem.getLocation();
     }
 
@@ -29,7 +32,8 @@ public class SalonCard {
         title = responseItem.getName();
         image = responseItem.getImages().get(0).getImage();
         description = responseItem.getDescription();
-        spase =String.format("%.2f km",haversine(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
+        spase = "0km";
+//        spase =String.format("%.2f km",haversine(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
         location = responseItem.getLocation();
     }
 
