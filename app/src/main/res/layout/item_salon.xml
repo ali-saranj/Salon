@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.example.salon.data.model.app.SalonCard" />
+        <import type="android.widget.TextView" />
 
         <variable
             name="salon"
@@ -121,6 +121,7 @@
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="@{salon.spase}"
+                android:visibility="@{salon.spase == null ? TextView.GONE:TextView.VISIBLE}"
                 android:background="@drawable/backgrand_tv_m"
                 android:fontFamily="@font/iransanswebmedium"
                 app:layout_constraintTop_toTopOf="parent"
