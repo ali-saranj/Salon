@@ -10,6 +10,10 @@
         <variable
             name="fragmentViewModel"
             type="com.example.salon.data.viewmodel.SearchViewModel" />
+
+        <variable
+            name="searchFragment"
+            type="com.example.salon.ui.fragment.SearchFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/iransans"
-                android:text="@={fragmentViewModel.s}"
                 android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -55,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:elevation="4dp"
-            android:onClick="@{()->fragmentViewModel.getSalon()}"
+            android:onClick="@{(view)->searchFragment.searchClick(view)}"
             app:backgroundTint="#e8710b"
             app:cornerRadius="10dp"
             app:icon="@drawable/round_search_24"
