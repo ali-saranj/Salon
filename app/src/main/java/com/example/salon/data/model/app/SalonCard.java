@@ -21,19 +21,22 @@ public class SalonCard {
         title = salonItem.getName();
         image = salonItem.getImages().get(0).getImage();
         description = salonItem.getDescription();
-        spase = "0km";
-//        spase = StringSpace(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude);
+        if(!(salonItem.getLongitude().isEmpty()||salonItem.getLatitude().isEmpty()))
+            spase = StringSpace(Double.parseDouble(salonItem.getLatitude()),Double.parseDouble(salonItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude);
+        else
+            spase = null;
         location = salonItem.getLocation();
     }
-
     @SuppressLint("DefaultLocale")
     public SalonCard(ResponseItem responseItem) {
         id = responseItem.getId();
         title = responseItem.getName();
         image = responseItem.getImages().get(0).getImage();
         description = responseItem.getDescription();
-        spase = "0km";
-//        spase =String.format("%.2f km",haversine(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude));
+        if(!(responseItem.getLongitude().isEmpty()||responseItem.getLatitude().isEmpty()))
+            spase = StringSpace(Double.parseDouble(responseItem.getLatitude()),Double.parseDouble(responseItem.getLongitude()),MainActivity.Latitude,MainActivity.Longitude);
+        else
+            spase = null;
         location = responseItem.getLocation();
     }
 
