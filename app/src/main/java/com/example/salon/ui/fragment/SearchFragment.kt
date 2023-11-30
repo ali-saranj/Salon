@@ -41,8 +41,8 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.searchFragment = this
         binding.lifecycleOwner = viewLifecycleOwner
-
         getData()
 
         return binding.root
@@ -114,7 +114,10 @@ class SearchFragment : Fragment() {
             binding.rvSalon.adapter =
                 AdapterSalonCardGraid(parentFragmentManager, it)
         }
+    }
 
-
+    fun searchClick(view: View){
+        searchViewModel.s.value = binding.edtSearch.text.toString()
+        searchViewModel.getSalon()
     }
 }
