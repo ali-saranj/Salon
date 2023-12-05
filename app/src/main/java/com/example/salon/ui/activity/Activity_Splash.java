@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -20,8 +21,10 @@ import com.example.salon.R;
 
 public class Activity_Splash extends AppCompatActivity {
 
-    AlertDialog alertDialog;
-    Button btn_datamobile, btn_wifi,btn_location;
+    private boolean isInternetDialogOpen = false;
+    private boolean isLocationDialogOpen = false;
+
+    private Button btn_datamobile, btn_wifi, btn_location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,33 +40,40 @@ public class Activity_Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isConnected()){
-                    if(isLocationEnabled())
+                if (isConnected() && isLocationEnabled()) {
+                    startActivity(new Intent(Activity_Splash.this, MainActivity.class));
+                    finish();
+                } else {
+
+                    if (!isConnected())
                     {
-                        startActivity(new Intent(Activity_Splash.this, MainActivity.class));
-                        finish();
+                        SplashShowInternet();
                     }
                     else
                     {
-                        SplashShowLocation();
+                        if (!isLocationEnabled()) {
+                            SplashShowLocation();
+                        }
                     }
                 }
-                else
-                {
-                    SplashShowInternet();
-                }
             }
-        }, 2000);
+        }, 3000);
     }
 
-    private void SplashShowInternet()
-    {
+    private void SplashShowInternet() {
+        if (isInternetDialogOpen) {
+            return;
+        }
+
+        isInternetDialogOpen = true;
+
+        AlertDialog alertDialogInternet;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_splash_internet, null);
         builder.setView(view);
-        alertDialog = builder.create();
+        alertDialogInternet = builder.create();
 
-        alertDialog.setCancelable(false);
+        alertDialogInternet.setCancelable(false);
 
         btn_wifi = view.findViewById(R.id.btn_wifi);
         btn_datamobile = view.findViewById(R.id.btn_datamobile);
@@ -71,8 +81,9 @@ public class Activity_Splash extends AppCompatActivity {
         btn_datamobile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.dismiss();
+                alertDialogInternet.dismiss();
                 startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
+                isInternetDialogOpen = false;
                 Connect();
             }
         });
@@ -80,42 +91,60 @@ public class Activity_Splash extends AppCompatActivity {
         btn_wifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.dismiss();
+                alertDialogInternet.dismiss();
                 startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                isInternetDialogOpen = false;
                 Connect();
             }
         });
 
-        alertDialog.show();
+        alertDialogInternet.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                isInternetDialogOpen = false;
+            }
+        });
+
+        alertDialogInternet.show();
     }
 
-   private void SplashShowLocation()
-    {
+    private void SplashShowLocation() {
+        if (isLocationDialogOpen) {
+            return;
+        }
+
+        isLocationDialogOpen = true;
+
+        AlertDialog alertDialogLocation;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_splash_location, null);
         builder.setView(view);
-        alertDialog = builder.create();
+        alertDialogLocation = builder.create();
 
-        alertDialog.setCancelable(false);
+        alertDialogLocation.setCancelable(false);
 
         btn_location = view.findViewById(R.id.btn_location);
-
 
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.dismiss();
-                // در بخش کد Java
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
+                alertDialogLocation.dismiss();
+                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                isLocationDialogOpen = false;
                 Connect();
             }
         });
 
+        alertDialogLocation.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                isLocationDialogOpen = false;
+            }
+        });
 
-
-        alertDialog.show();
+        alertDialogLocation.show();
     }
+
     public boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
