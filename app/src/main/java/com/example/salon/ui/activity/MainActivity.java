@@ -1,10 +1,8 @@
 package com.example.salon.ui.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.databinding.DataBindingUtil;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.Manifest;
@@ -14,7 +12,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -35,6 +32,7 @@ import com.google.android.gms.tasks.Task;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     int PERMISSION_ID = 44;

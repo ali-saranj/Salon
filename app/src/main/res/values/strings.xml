@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Salon</string>
+    <string name="app_name">Rezervo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_splash_internet">به اینترنت متصل نیستید. برای استفاده از اپلیکیشن به اینترنت متصل شوید.</string>
+    <string name="text_splash_location">برای این که موقعیت دقیقتان را روی نقشه ببنیم، لازم است دسترسی به موقعیت مکانی دستگاهتان را روشن کنید</string>
+
 </resources>
