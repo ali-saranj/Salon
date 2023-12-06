@@ -21,8 +21,9 @@ import com.example.salon.R;
 
 public class Activity_Splash extends AppCompatActivity {
 
-    private boolean isInternetDialogOpen = false;
-    private boolean isLocationDialogOpen = false;
+
+    AlertDialog alertDialogLocation;
+    AlertDialog alertDialogInternet;
 
     private Button btn_datamobile, btn_wifi, btn_location;
 
@@ -40,18 +41,21 @@ public class Activity_Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isConnected() && isLocationEnabled()) {
+                if (isConnected() && isLocationEnabled())
+                {
                     startActivity(new Intent(Activity_Splash.this, MainActivity.class));
                     finish();
-                } else {
-
+                }
+                else
+                {
                     if (!isConnected())
                     {
                         SplashShowInternet();
                     }
                     else
                     {
-                        if (!isLocationEnabled()) {
+                        if (!isLocationEnabled())
+                        {
                             SplashShowLocation();
                         }
                     }
@@ -61,13 +65,9 @@ public class Activity_Splash extends AppCompatActivity {
     }
 
     private void SplashShowInternet() {
-        if (isInternetDialogOpen) {
-            return;
-        }
 
-        isInternetDialogOpen = true;
 
-        AlertDialog alertDialogInternet;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_splash_internet, null);
         builder.setView(view);
@@ -82,40 +82,39 @@ public class Activity_Splash extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alertDialogInternet.dismiss();
+
                 startActivity(new Intent(Settings.ACTION_DATA_USAGE_SETTINGS));
-                isInternetDialogOpen = false;
+
                 Connect();
             }
         });
 
         btn_wifi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 alertDialogInternet.dismiss();
+
                 startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                isInternetDialogOpen = false;
-                Connect();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Connect();
+                    }
+                }, 4000);
+
             }
         });
 
-        alertDialogInternet.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                isInternetDialogOpen = false;
-            }
-        });
+
 
         alertDialogInternet.show();
     }
 
     private void SplashShowLocation() {
-        if (isLocationDialogOpen) {
-            return;
-        }
 
-        isLocationDialogOpen = true;
 
-        AlertDialog alertDialogLocation;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_splash_location, null);
         builder.setView(view);
@@ -130,17 +129,12 @@ public class Activity_Splash extends AppCompatActivity {
             public void onClick(View view) {
                 alertDialogLocation.dismiss();
                 startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                isLocationDialogOpen = false;
+
                 Connect();
             }
         });
 
-        alertDialogLocation.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                isLocationDialogOpen = false;
-            }
-        });
+
 
         alertDialogLocation.show();
     }
